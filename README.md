@@ -61,7 +61,7 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-[![Product Name Screen Shot][product-screenshot]](https://example.com)
+[![Chatfish Screen Shot][product-screenshot]](images/Product Screenshot.PNG)
 
 
 ### Built With
@@ -69,8 +69,6 @@
 * [Atom]()
 * [.NET Framework]()
 * [MySql]()
-
-
 
 <!-- GETTING STARTED -->
 ## Getting Started
@@ -80,9 +78,17 @@ To get a local copy up and running follow these simple steps.
 ### Prerequisites
 
 This is an example of how to list things you need to use the software and how to install them.
-* npm
+
+1. Initialize the dotnet cs project
+
 ```sh
-npm install npm@latest -g
+dotnet new winforms
+```
+
+2. Add the MySql.Data.dll assembly reference and place in project directory (this is gitignored)
+
+```sh
+dotnet add reference MySql.Data.dll
 ```
 
 ### Installation
@@ -90,10 +96,6 @@ npm install npm@latest -g
 1. Clone the repo
 ```sh
 git clone https://github.com/Borumer/Chatfish.git
-```
-2. Install NPM packages
-```sh
-npm install
 ```
 
 
@@ -105,7 +107,9 @@ Use this space to show useful examples of how a project can be used. Additional 
 
 _For more examples, please refer to the [Documentation](https://example.com)_
 
-
+- **Example 1:** Text your friends
+- **Example 2:** Video chat your colleagues
+- **Example 3:** Interview a new employee 
 
 <!-- ROADMAP -->
 ## Roadmap

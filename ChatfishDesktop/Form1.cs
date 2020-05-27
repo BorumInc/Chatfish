@@ -19,8 +19,13 @@ namespace ChatfishDesktop
             InitializeComponent();
             int height = Screen.PrimaryScreen.Bounds.Height;
             int width = Screen.PrimaryScreen.Bounds.Width;
-            this.Size = new Size(width, height);
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Paint += new PaintEventHandler(f1_paint);
+            TextBox msgInput = new TextBox();
+            msgInput.Location = new Point(650, 530);
+            this.Controls.Add(msgInput);
+            this.ResumeLayout(false);
+            this.PerformLayout();
             //StartConnection();
         }
 
@@ -60,12 +65,14 @@ namespace ChatfishDesktop
         private void f1_paint(object sender, PaintEventArgs e)
         {
           Graphics g = e.Graphics;
-          int x = 650;
-          int y = 530;
-          g.DrawString("Enter your message here", new Font("Verdana", 20), new SolidBrush(Color.Tomato), x, y);
-          g.DrawRectangle(new Pen(Color.Gray, 3), x, y, 700, 75);
+          int messageBoxX = 650;
+          int messageBoxY = 530;
+          Font myFont = new Font("Verdana", 16);
+          g.DrawString("Contacts", myFont, new SolidBrush(Color.Black), 40, 40);
+          g.DrawString("Enter your message here", myFont, new SolidBrush(Color.Tomato), messageBoxX, messageBoxY);
+          g.DrawRectangle(new Pen(Color.Gray, 3), messageBoxX, messageBoxY, 700, 75);
           g.DrawLine(new Pen(Color.Black, 3), 300, 0, 300, 800);
-          g.DrawEllipse(new Pen(Color.Black, 3), new Rectangle(x + 600, y, 50, 50));
+          g.DrawEllipse(new Pen(Color.Black, 3), new Rectangle(messageBoxX + 600, messageBoxY + 10, 50, 50));
         }
     }
 }
