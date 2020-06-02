@@ -13,7 +13,7 @@ namespace ChatfishDesktop
 	public class ContactLabel : Label
 	{
 		private static int count = 0;
-		public ContactLabel(string text) : base()
+		public ContactLabel(string contactName) : base()
 		{
 			// Set border to none
 			this.BorderStyle = BorderStyle.FixedSingle;
@@ -25,7 +25,7 @@ namespace ChatfishDesktop
 			// Specify that the text can display mnemonic characters.
 			this.UseMnemonic = true;
 			// Set the text of the control and specify a mnemonic character.
-			this.Text = text;
+			this.Text = contactName;
 
 			/* Set the size of the control based on the PreferredHeight and PreferredWidth values. */
 			int height = 200;

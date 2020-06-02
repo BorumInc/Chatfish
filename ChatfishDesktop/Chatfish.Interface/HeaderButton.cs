@@ -16,9 +16,9 @@ namespace ChatfishDesktop
 
 		private static int count = 0;
 
-		public HeaderButton(string text, Panel panel) : base()
+		public HeaderButton(string buttonText, Panel panel) : base()
 		{
-			this.Text = text;
+			this.Text = buttonText;
 			int bWidth = 300;
 			this.Location = new Point(10 + bWidth * count, 10);
 			this.Size = new Size(bWidth, 40);

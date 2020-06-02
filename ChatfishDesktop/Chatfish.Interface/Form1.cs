@@ -14,6 +14,7 @@ namespace ChatfishDesktop
     public partial class Form1 : Form
     {
         string ph = "Enter your message";
+        private Label lastMessage;
 
         public Form1()
         {
@@ -23,10 +24,16 @@ namespace ChatfishDesktop
             int width = Screen.PrimaryScreen.Bounds.Width;
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Paint += new PaintEventHandler(f1_paint);
+            int msgX = 650;
+
             TextBox msgInput = new TextBox();
-            msgInput.Location = new Point(650, 530);
-            msgInput.Size = new Size(700, 75);
-            msgInput.Font = new Font(msgInput.Font.FontFamily, 16);
+
+            Font myFont = new Font(msgInput.Font.FontFamily, 16);
+            Size msgBoxSize = new Size(700, 75);
+
+            msgInput.Location = new Point(msgX, 530);
+            msgInput.Size = msgBoxSize;
+            msgInput.Font = myFont;
             msgInput.Multiline = true;
             msgInput.GotFocus += RemoveText;
             msgInput.LostFocus += AddText;
@@ -35,39 +42,24 @@ namespace ChatfishDesktop
             msgInput.Text = ph;
             this.Controls.Add(msgInput);
 
+            lastMessage = new Label();
+            lastMessage.Location = new Point(msgX, 430);
+            lastMessage.Size = msgBoxSize;
+            lastMessage.Text = "This label has the last message";
+            lastMessage.Font = myFont;
+
+            this.Controls.Add(lastMessage);
+
             Button newFish = new Button();
             newFish.Location = new Point(100, 530);
             newFish.Text = "New Fish";
             newFish.Size = new Size(200, 60);
             this.Controls.Add(newFish);
 
-            String[] contactNames = new String[] {"Varun Singh", "Manav Singh", "Peter Peterson", "John Johnson"};
-            Panel p = new Panel();
-            p.Location = new Point(35, 80);
-            p.Size = new Size(ClientRectangle.Width + 500, 60);
-            p.BorderStyle = BorderStyle.FixedSingle;
-            for (int i = 0; i < 10; i++)
-              p.Controls.Add(new ContactLabel(contactNames[i % 4]));
-            this.Controls.Add(p);
+            HeaderPanel btnsPanel = new HeaderPanel();
 
-            Panel chatList = new Panel();
-            chatList.Location = new Point(35, 80);
-            chatList.Size = new Size(ClientRectangle.Width + 500, 60);
-            chatList.BorderStyle = BorderStyle.FixedSingle;
-            for (int i = 0; i < 10; i++)
-              chatList.Controls.Add(new Button());
-            this.Controls.Add(chatList);
-
-            Panel btnsPanel = new Panel();
-            btnsPanel.Location = new Point(35, 10);
-            btnsPanel.Size = new Size(ClientRectangle.Width + 500, 60);
-            btnsPanel.BorderStyle = BorderStyle.FixedSingle;
-
-            Button contactsBtn = new HeaderButton("Contacts", p);
-            btnsPanel.Controls.Add(contactsBtn);
-
-            Button chatsBtn = new HeaderButton("Fish", p);
-            btnsPanel.Controls.Add(chatsBtn);
+            CreateContacts(btnsPanel);
+            CreateFish(btnsPanel);
 
             this.Controls.Add(btnsPanel);
 
@@ -105,6 +97,37 @@ namespace ChatfishDesktop
               connection.Close();
             }
           }
+        }
+
+        public void CreateFish(Panel btnsPanel)
+        {
+          Panel chatList = new SystemPanel();
+          for (int i = 0; i < 10; i++) {
+            Label chat = new Label();
+            chat.Text = "Hello";
+            chatList.Controls.Add(chat);
+          }
+
+          // Create button that shows/hides chats and display it
+          Button chatsBtn = new HeaderButton("Fish", chatList);
+          btnsPanel.Controls.Add(chatsBtn);
+          this.Controls.Add(chatList);
+        }
+
+        public void CreateContacts(Panel btnsPanel)
+        {
+          Panel contactsPanel = new SystemPanel();
+          // Initialize list of contacts
+          String[] contactNames = new String[] {"Varun Singh", "Manav Singh", "Peter Peterson", "John Johnson"};
+
+          // Add contact labels to contacts container
+          for (int i = 0; i < 10; i++)
+            contactsPanel.Controls.Add(new ContactLabel(contactNames[i % 4]));
+
+          // Create button that shows/hides contacts and display it
+          Button contactsBtn = new HeaderButton("Contacts", contactsPanel);
+          btnsPanel.Controls.Add(contactsBtn);
+          this.Controls.Add(contactsPanel);
         }
 
         public void RemoveText(object sender, EventArgs e)
@@ -147,6 +170,7 @@ namespace ChatfishDesktop
             if (enterEntered == true)
             {
                 e.Handled = true;
+                lastMessage.Text = ((TextBox) sender).Text;
                 ((TextBox) sender).Text = "";
             }
         }
