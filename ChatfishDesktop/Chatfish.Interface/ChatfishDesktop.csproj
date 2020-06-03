@@ -6,10 +6,6 @@
     <UseWindowsForms>true</UseWindowsForms>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="MySql.Data.dll">
-      <HintPath>MySql.Data.dll</HintPath>
-      <SpecificVersion>False</SpecificVersion>
-      <!-- You may set it to true if your dll has a specific version -->
-    </Reference>
+    <ProjectReference Include="..\Chatfish.Aquarium\Chatfish.Aquarium.csproj" />
   </ItemGroup>
 </Project>

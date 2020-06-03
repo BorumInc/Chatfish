@@ -7,7 +7,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using MySql.Data.MySqlClient;
 
 namespace ChatfishDesktop
 {
@@ -68,36 +67,7 @@ namespace ChatfishDesktop
             //StartConnection();
         }
 
-        public void StartConnection()
-        {
-          String server = "160.153.59.192";
-          String database = "Chatfish";
-          String uid = "libuc6kfb0jg";
-          String password = "LearnPhp@@@1";
-          String connectionString;
-          connectionString = "SERVER=" + server + ";" + "DATABASE=" +
-          database + ";" + "UID=" + uid + ";" + "PASSWORD=" + password + ";";
-          using (MySqlConnection connection = new MySqlConnection(
-               connectionString))
-          {
-            MySqlCommand command = new MySqlCommand("SELECT * FROM messages", connection);
-            command.Connection.Open();
-            Console.WriteLine($"Connection connected to {database}");
-            MySqlDataReader myReader = command.ExecuteReader();
-            try
-            {
-              while (myReader.Read())
-              {
-                Console.WriteLine(myReader.GetString(1));
-              }
-            }
-            finally
-            {
-              myReader.Close();
-              connection.Close();
-            }
-          }
-        }
+
 
         public void CreateFish(Panel btnsPanel)
         {

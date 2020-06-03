@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Runtime.InteropServices;
+using Chatfish.Aquarium;
 
 namespace ChatfishDesktop
 {
@@ -11,15 +12,15 @@ namespace ChatfishDesktop
     {
         [DllImport( "kernel32.dll" )]
         static extern bool AttachConsole( int dwProcessId );
-        private const int ATTACH_PARENT_PROCESS = -1;
 
         [STAThread]
         static void Main()
         {
-            AttachConsole( ATTACH_PARENT_PROCESS );
+            AttachConsole(-1);
             Application.SetHighDpiMode(HighDpiMode.SystemAware);
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
+            new Class1().StartConnection();
             Application.Run(new Form1());
         }
     }
