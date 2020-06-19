@@ -5,20 +5,29 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.IO;
+using Chatfish.Aquarium;
 
 namespace ChatfishDesktop
 {
     public partial class Form1 : Form
     {
-        string ph = "Enter your message";
+        private string ph = "Enter your message";
         private Label lastMessage;
 
         public Form1()
         {
             Console.WriteLine("Component initializing...PaintHandler painting...");
             InitializeComponent();
+
+            using (var stream = File.OpenRead("../../images/icon.ico"))
+            {
+                this.Icon = new Icon(stream);
+            }
+
+            this.Text = "Chatfish";
+
             int height = Screen.PrimaryScreen.Bounds.Height;
             int width = Screen.PrimaryScreen.Bounds.Width;
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
@@ -64,24 +73,28 @@ namespace ChatfishDesktop
 
             this.ResumeLayout(false);
             this.PerformLayout();
-            //StartConnection();
         }
-
-
 
         public void CreateFish(Panel btnsPanel)
         {
-          Panel chatList = new SystemPanel();
-          for (int i = 0; i < 10; i++) {
+          Panel fishPanel = new SystemPanel();
+          String[] fishNames = new String[] {"GGT Society (2020)", "GGT Society(2018)", "GGT Society (2016)"};
+
+          for (int i = 0; i < 10; i++)
+          {
             Label chat = new Label();
-            chat.Text = "Hello";
-            chatList.Controls.Add(chat);
+            chat.Location = new Point(i * 100, 10);
+            chat.Text = fishNames[i % fishNames.Length];
+            chat.Size = new Size(100, 30);
+            Console.WriteLine(chat.Location);
+            fishPanel.Controls.Add(chat);
           }
 
           // Create button that shows/hides chats and display it
-          Button chatsBtn = new HeaderButton("Fish", chatList);
+          Button chatsBtn = new HeaderButton("Fish", fishPanel);
           btnsPanel.Controls.Add(chatsBtn);
-          this.Controls.Add(chatList);
+          this.Controls.Add(fishPanel);
+          fishPanel.Hide();
         }
 
         public void CreateContacts(Panel btnsPanel)
@@ -98,6 +111,7 @@ namespace ChatfishDesktop
           Button contactsBtn = new HeaderButton("Contacts", contactsPanel);
           btnsPanel.Controls.Add(contactsBtn);
           this.Controls.Add(contactsPanel);
+          contactsPanel.Hide();
         }
 
         public void RemoveText(object sender, EventArgs e)
