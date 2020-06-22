@@ -21,13 +21,12 @@ namespace ChatfishDesktop
             Console.WriteLine("Component initializing...PaintHandler painting...");
             InitializeComponent();
 
-            using (var stream = File.OpenRead("../../images/icon.ico"))
+            using (var logoStream = File.OpenRead("../../images/icon.ico"))
             {
-                this.Icon = new Icon(stream);
+                this.Icon = new Icon(logoStream); // Set Icon to Chatfish logo
             }
 
             this.Text = "Chatfish";
-
             int height = Screen.PrimaryScreen.Bounds.Height;
             int width = Screen.PrimaryScreen.Bounds.Width;
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
@@ -55,21 +54,31 @@ namespace ChatfishDesktop
             lastMessage.Size = msgBoxSize;
             lastMessage.Text = "This label has the last message";
             lastMessage.Font = myFont;
-
             this.Controls.Add(lastMessage);
 
-            Button newFish = new Button();
-            newFish.Location = new Point(100, 530);
-            newFish.Text = "New Fish";
-            newFish.Size = new Size(200, 60);
-            this.Controls.Add(newFish);
+            Size newBtnsSize = new Size(200, 60);
+
+            Button newCatFish = new Button();
+            newCatFish.Location = new Point(100, 530);
+            newCatFish.Text = "New Catfish";
+            newCatFish.Size = newBtnsSize;
+            this.Controls.Add(newCatFish);
+
+            Button newKnot = new Button();
+            newKnot.Location = new Point(320, 530);
+            newKnot.Text = "New Knot";
+            newKnot.Size = newBtnsSize;
+            this.Controls.Add(newKnot);
 
             HeaderPanel btnsPanel = new HeaderPanel();
-
             CreateContacts(btnsPanel);
             CreateFish(btnsPanel);
-
             this.Controls.Add(btnsPanel);
+
+            // Store the messages a user sends to recipient and what the recipient(s) send to the user
+            List<ChatfishMessage> messages = new List<ChatfishMessage>();
+            messages.Add(new ChatfishMessage("1", false));
+            Console.WriteLine(messages[0].MessageContents);
 
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -86,7 +95,6 @@ namespace ChatfishDesktop
             chat.Location = new Point(i * 100, 10);
             chat.Text = fishNames[i % fishNames.Length];
             chat.Size = new Size(100, 30);
-            Console.WriteLine(chat.Location);
             fishPanel.Controls.Add(chat);
           }
 

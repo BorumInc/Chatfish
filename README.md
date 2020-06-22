@@ -66,30 +66,14 @@
 
 ### Built With
 
-* [Atom]()
-* [.NET Framework]()
-* [MySql]()
+* [Atom](https://atom.io/)
+* [.NET Framework](https://dotnet.microsoft.com/download/dotnet-framework)
+* [MySQL](https://www.mysql.com/)
 
 <!-- GETTING STARTED -->
 ## Getting Started
 
 To get a local copy up and running follow these simple steps.
-
-### Prerequisites
-
-This is an example of how to list things you need to use the software and how to install them.
-
-1. Initialize the dotnet cs project
-
-```sh
-dotnet new winforms
-```
-
-2. Add the MySql.Data.dll assembly reference and place in project directory (this is gitignored)
-
-```sh
-dotnet add reference MySql.Data.dll
-```
 
 ### Installation
 
@@ -98,25 +82,44 @@ dotnet add reference MySql.Data.dll
 git clone https://github.com/Borumer/Chatfish.git
 ```
 
+2. Add the MySql.Data.dll assembly reference and place in project directory (this is gitignored)
 
+**Important: You must be in the project Chatfish.Aquarium folder**
+
+```sh
+dotnet add reference MySql.Data.dll
+```
 
 <!-- USAGE EXAMPLES -->
 ## Usage
 
-Use this space to show useful examples of how a project can be used. Additional screenshots, code examples and demos work well in this space. You may also link to more resources.
+### Terms
 
-_For more examples, please refer to the [Documentation](https://example.com)_
+Catfish - a single group conversation
+Knot - a group of catfish in one place with the same people
+Tank - the combination of catfish and knots for a single user
+Aquarium - the combination of tanks in the entire Chatfish server
 
-- **Example 1:** Text your friends
-- **Example 2:** Video chat your colleagues
-- **Example 3:** Interview a new employee 
+- **Example 1:** Communicate with a (group of) non-tech-savvy individual(s)
+  1. Click "New Catfish"
+  2. Enter the contact or email address(es)
+  3. Enter and send a message
+
+- **Example 2:** Video chat or video conference with colleagues
+  1. Open an existing Catfish (possibly in a Knot). See Example 1 on how to do this.
+  2. Click "Video Chat"
+
+- **Example 3:** Organize an event using Chatfish
+  1. Click "New Knot"
+  2. Enter the contact of email address(es)
+  3. Create a Catfish
+  4. Enter and send a message
+  5. Repeat steps 3-4 as many times as needed
 
 <!-- ROADMAP -->
 ## Roadmap
 
 See the [open issues](https://github.com/Borumer/Chatfish/issues) for a list of proposed features (and known issues).
-
-
 
 <!-- CONTRIBUTING -->
 ## Contributing
@@ -129,14 +132,10 @@ Contributions are what make the open source community such an amazing place to b
 4. Push to the Branch (`git push origin feature/AmazingFeature`)
 5. Open a Pull Request
 
-
-
 <!-- LICENSE -->
 ## License
 
 Distributed under the MIT License. See `LICENSE` for more information.
-
-
 
 <!-- CONTACT -->
 ## Contact
@@ -145,17 +144,12 @@ Varun Singh - [@BorumInc](https://twitter.com/BorumInc) - boruminc@outlook.com
 
 Project Link: [https://github.com/Borumer/Chatfish](https://github.com/Borumer/Chatfish)
 
-
-
 <!-- ACKNOWLEDGEMENTS -->
 ## Acknowledgements
 
 * []()
 * []()
 * []()
-
-
-
 
 
 <!-- MARKDOWN LINKS & IMAGES -->
