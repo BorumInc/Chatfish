@@ -98,6 +98,9 @@ dotnet add reference MySql.Data.dll
 Catfish - a single group conversation
 Knot - a group of catfish in one place with the same people
 Tank - the combination of catfish and knots for a single user
+Chat - a word to describe a Catfish OR a Knot
+Outer Catfish - A Catfish that represents an entire Chat
+Inner Catfish - A Catfish that's part of a Knot
 Aquarium - the combination of tanks in the entire Chatfish server
 
 - **Example 1:** Communicate with a (group of) non-tech-savvy individual(s)
